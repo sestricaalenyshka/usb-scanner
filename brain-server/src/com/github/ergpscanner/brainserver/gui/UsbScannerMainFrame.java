@@ -18,11 +18,11 @@ package com.github.ergpscanner.brainserver.gui;
 import javax.swing.*;
 
 /**
- * Класс главного окна приложения "EGRP-Scanner".
+ * Класс главного окна приложения "USB-Scanner".
  *
  * @author sestricaalenyshka
  */
-public class EGRPScannerMainFrame {
+public class UsbScannerMainFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -34,7 +34,7 @@ public class EGRPScannerMainFrame {
     }
 
     private static void createAndShowGUI() {
-        JFrame myFrame = new JFrame("EGRP-Scanner");
+        JFrame myFrame = new JFrame("USB-Scanner");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.setSize(400, 300);
         myFrame.setVisible(true);

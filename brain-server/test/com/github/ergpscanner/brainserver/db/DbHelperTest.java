@@ -38,8 +38,8 @@ public class DbHelperTest {
         Class.forName(TEST_DB_DRIVER);
         try (Connection conn = DriverManager.getConnection(TEST_DB_URL, "", "");
              Statement stmt = conn.createStatement()) {
-            stmt.execute("create table df_folders (no varchar(255), s_date date)");
-            stmt.execute("insert into df_folders (no, s_date) values ('123', '2015-04-27')");
+            stmt.execute("create table folders (no varchar(255), s_date date)");
+            stmt.execute("insert into folders (no, s_date) values ('123', '2015-04-27')");
         }
     }
 

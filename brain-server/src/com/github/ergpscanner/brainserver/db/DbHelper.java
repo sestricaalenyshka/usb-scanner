@@ -40,7 +40,7 @@ public class DbHelper {
     public Folder getFolder(String folderName) throws SQLException, ClassNotFoundException {
 
         try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement("select * from df_folders where no = ?")) {
+             PreparedStatement stmt = con.prepareStatement("select * from folders where no = ?")) {
             stmt.setString(1, folderName);
 
             try (ResultSet resultSet = stmt.executeQuery()) {
