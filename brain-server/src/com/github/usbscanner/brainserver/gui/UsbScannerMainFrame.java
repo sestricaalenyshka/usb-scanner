@@ -13,32 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.ergpscanner.brainserver.model;
+package com.github.usbscanner.brainserver.gui;
 
-import java.util.Date;
+import javax.swing.*;
 
 /**
- *
+ * Класс главного окна приложения "USB-Scanner".
  *
  * @author sestricaalenyshka
  */
-public class Folder {
-    private String name;
-    private Date createDate;
+public class UsbScannerMainFrame {
 
-    public String getName() {
-        return name;
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                createAndShowGUI();
+            }
+        });
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    private static void createAndShowGUI() {
+        JFrame myFrame = new JFrame("USB-Scanner");
+        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myFrame.setSize(400, 300);
+        myFrame.setVisible(true);
     }
 }
