@@ -14,20 +14,52 @@
 <project name="UsbScannerProject" default="create-jar" basedir=".">
 
     <property name="src" location="src"/>
+    <property name="test-src" location="test"/>
+    <property name="lib" location="lib"/>
     <property name="build" location="build"/>
+    <property name="test-build" location="test-build"/>
+    <property name="test-reports" location="test-reports"/>
     <property name="dist" location="dist"/>
+
+    <path id="lib">
+        <fileset dir="${lib}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
 
     <target name="clean">
         <delete dir="${build}"/>
+        <delete dir="${test-build}"/>
+        <delete dir="${test-reports}"/>
         <delete dir="${dist}"/>
     </target>
 
     <target name="compile-classes" depends="clean">
         <mkdir dir="${build}"/>
+        <mkdir dir="${test-build}"/>
         <javac srcdir="${src}" destdir="${build}"/>
+        <javac srcdir="${test-src}" destdir="${test-build}">
+            <classpath refid="lib"/>
+            <classpath location="${build}"/>
+        </javac>
     </target>
 
-    <target name="create-jar" depends="compile-classes">
+    <target name="test" depends="compile-classes">
+        <mkdir dir="${test-reports}"/>
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath refid="lib"/>
+            <classpath location="${build}"/>
+            <classpath location="${test-build}"/>
+            <formatter type="xml"/>
+            <batchtest todir="${test-reports}">
+                <fileset dir="${test-src}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="create-jar" depends="test">
         <mkdir dir="${dist}"/>
         <jar basedir="build" jarfile="${dist}/usb-scanner.jar"
              manifest="${src}/META-INF/MANIFEST.MF"/>
